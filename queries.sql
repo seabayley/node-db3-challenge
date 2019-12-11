@@ -31,3 +31,27 @@ join customer as c
 	on c.Id = o.CustomerId
 join employee as e
 	on e.Id = o.EmployeeId
+
+-- Stretch
+
+-- Displays CategoryName and a new column called Count that shows how many products are in each category. Shows 9 records.
+
+SELECT
+  CategoryName,
+  COUNT(*) AS `Total`
+FROM
+  Products as p
+ JOIN Categories as c
+ 	on p.CategoryId = c.CategoryId
+GROUP BY
+  p.CategoryId
+
+  -- For the above query I'm only getting 9 records instead of 9 and W3 Schools shows only 8 different categories?
+
+
+  -- Display OrderID and a column called ItemCount that shows the total number of products placed on the order. Shows 196 records.
+
+SELECT OrderID as 'Order ID', 
+SUM (quantity) as 'Total Products Ordered' 
+FROM OrderDetails
+GROUP BY OrderID
