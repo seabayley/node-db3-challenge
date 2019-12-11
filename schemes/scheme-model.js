@@ -10,7 +10,7 @@ const findSteps = id => {
     return db('steps as st')
     .join('schemes as sc', 'sc.id', 'st.scheme_id')
     .select('st.id', 'sc.scheme_name', 'st.step_number', 'st.instructions')
-    .where('st.scheme_id', 2)
+    .where('st.scheme_id', id)
 }
 
 const add = scheme => {
@@ -33,11 +33,22 @@ const remove = id => {
     .then(res => `Deleted scheme with the id of ${id}`)
 }
 
+// STRETCH
+
+const addStep = (step, scheme_id) => {
+    let newStep = {...step, scheme_id: scheme_id}
+    return db('steps').insert(newStep)
+    .then(ids => {
+        return newStep
+    })
+}
+
 module.exports = {
     find,
     findById,
     findSteps,
     add,
     update,
-    remove
+    remove,
+    addStep
 }
