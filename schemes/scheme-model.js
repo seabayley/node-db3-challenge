@@ -35,11 +35,10 @@ const remove = id => {
 
 // STRETCH
 
-const addStep = (step, scheme_id) => {
-    let newStep = {...step, scheme_id: scheme_id}
-    return db('steps').insert(newStep)
+const addStep = (step) => {
+    return db('steps').insert(step)
     .then(ids => {
-        return newStep
+        return step
     })
 }
 
